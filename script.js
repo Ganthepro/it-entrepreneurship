@@ -30,11 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    function displayResult(type) {
-        displayTriangleSVG(type);
-        displayTriangleText(type);
-    }
-
 
     function displayTriangleErrorText(text) {
         const triangleText = document.getElementById('triangleText');
