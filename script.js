@@ -75,6 +75,7 @@ function drawTriangle(triangleType)
 
     context.clearRect(0, 0, width, height);
     context.beginPath();
+    context.lineWidth = 3;
 
     // Draw the triangle based on the canvas size and the type of triangle
     if (triangleType === "Equilateral Triangle") 
@@ -133,7 +134,8 @@ function drawTriangle(triangleType)
         context.lineTo(bottomX, bottomY);
         context.lineTo(topX, topY);
     }
-
+    context.fillStyle = "#e8e4e4";
+    context.fill();
     context.stroke();
 }
 
