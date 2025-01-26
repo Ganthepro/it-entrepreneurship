@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // console.log('Side 1:', side1);
         // console.log('Side 2:', side2);
         // console.log('Side 3:', side3);
+
         const triangleType = classifyTriangle(side1, side2, side3);
         displayResult(triangleType);
     });
