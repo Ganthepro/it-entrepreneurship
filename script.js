@@ -30,30 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    function classifyTriangle(a, b, c) {
-
-    }
-
     function displayResult(type) {
         displayTriangleSVG(type);
         displayTriangleText(type);
     }
 
-    function displayTriangleSVG(type) {
-        const resultSVG = document.getElementById('resultSVG');
-
-    }
-
-    function displayTriangleText(type) {
-        const triangleText = document.getElementById('triangleText');
-        let message;
-
-        switch(type) {
-
-        }
-
-        triangleText.textContent = message;
-    }
 
     function displayTriangleErrorText(text) {
         const triangleText = document.getElementById('triangleText');
