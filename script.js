@@ -131,3 +131,9 @@ function drawTriangle(triangleType)
 
     context.stroke();
 }
+
+    function displayTriangleErrorText(text) {
+        const triangleText = document.getElementById('triangleText');
+        triangleText.textContent = text;
+    }
+});
