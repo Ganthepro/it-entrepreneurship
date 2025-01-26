@@ -22,44 +22,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function validateInput(a, b, c) {
         if (a <= 0 || b <= 0 || c <= 0) {
-            displayError('All side lengths must be positive numbers');
+            displayTriangleErrorText('All side lengths must be positive numbers');
             return false;
         }
 
         if (!(a + b > c && b + c > a && a + c > b)) {
-            displayError('These side lengths cannot form a valid triangle');
+            displayTriangleErrorText('These side lengths cannot form a valid triangle');
             return false;
         }
         
         return true;
     }
+
+    function displayTriangleErrorText(text) {
+        const triangleText = document.getElementById('triangleText');
+        triangleText.textContent = text;
+    }
 });
 
-function displayResult(triangleType) 
-{
-    document.getElementsByClassName('triangle-type-text').innerText = triangleType;
-    drawTriangle(triangleType)
+function displayResult(triangleType) {
+    const resultElement = document.querySelector('.triangle-type-text');
+    if (resultElement) {
+        resultElement.innerText = `Triangle Type: ${triangleType}`;
+    }
+    drawTriangle(triangleType);
 }
 
-function classifyTriangle(side1, side2, side3) 
-{
-    if (side1 === side2 && side2 === side3) 
-    {
+function classifyTriangle(side1, side2, side3) {
+    const sides = [side1, side2, side3].sort((a, b) => a - b);
+    const [a, b, c] = sides; 
+
+    if (a === b && b === c) {
         return "Equilateral Triangle";
     }
-    if (side1 === side2 || side2 === side3 || side1 === side3) 
-    {
+    if (a === b || b === c || a === c) {
         return "Isosceles Triangle";
     }
-    if (side1 * side1 + side2 * side2 === side3 * side3) 
-    {
+    if (a * a + b * b === c * c) {
         return "Right Triangle";
-    } 
-    else 
-    {
+    } else {
         return "Scalene Triangle";
     }
 }
+
 
 function drawTriangle(triangleType) 
 {
@@ -132,8 +137,3 @@ function drawTriangle(triangleType)
     context.stroke();
 }
 
-    function displayTriangleErrorText(text) {
-        const triangleText = document.getElementById('triangleText');
-        triangleText.textContent = text;
-    }
-});
