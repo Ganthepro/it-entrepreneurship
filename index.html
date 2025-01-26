@@ -3,12 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triangle Caculator</title>
+    <title>Triangle Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    
+    <div class="container">
+        <h1>Triangle Classifier</h1>
+
+        <!-- Display Triangle Type SVG Here!! -->
+        <div id="result" class="triangle-type-svg">
+            <svg id="resultSVG" viewBox="0 0 200 200" width="200" height="200"></svg>
+        </div>
+
+        <form id="triangleForm">
+            <div class="input-group">
+                <label class="input-label" for="side1">Side 1</label>
+                <input type="number" id="side1" class="input-box" placeholder="Enter Length" min="0" required> 
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="side2">Side 2</label>
+                <input type="number" id="side2" class="input-box" placeholder="Enter Length" min="0" required> 
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="side3">Side 3</label>
+                <input type="number" id="side3" class="input-box" placeholder="Enter Length" min="0" required> 
+            </div>
+            <button type="submit">Classify Triangle</button>
+        </form>
+        
+        <!-- Display Triangle Type Text Here!! -->
+        <div class="triangle-type-text"></div>
     <script src="script.js"></script>
 </body>
 </html>
