@@ -3,10 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        var canvas = document.getElementById('triangleCanvas');
+        var context = canvas.getContext('2d');
+        var width = canvas.width;
+        var height = canvas.height;
 
-        const side1 = parseFloat(document.getElementById('side1').value);
-        const side2 = parseFloat(document.getElementById('side2').value);
-        const side3 = parseFloat(document.getElementById('side3').value);
+        context.clearRect(0, 0, width, height);
+
+        let side1 = parseFloat(document.getElementById('side1').value);
+        let side2 = parseFloat(document.getElementById('side2').value);
+        let side3 = parseFloat(document.getElementById('side3').value);
+
+        if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+            displayTriangleErrorText('All side lengths must be numbers');
+            return;
+        }
 
         if (!validateInput(side1, side2, side3)) {
             return;
@@ -30,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             displayTriangleErrorText('These side lengths cannot form a valid triangle');
             return false;
         }
-        
+
         return true;
     }
 
@@ -50,7 +61,7 @@ function displayResult(triangleType) {
 
 function classifyTriangle(side1, side2, side3) {
     const sides = [side1, side2, side3].sort((a, b) => a - b);
-    const [a, b, c] = sides; 
+    const [a, b, c] = sides;
 
     if (a === b && b === c) {
         return "Equilateral Triangle";
@@ -66,68 +77,63 @@ function classifyTriangle(side1, side2, side3) {
 }
 
 
-function drawTriangle(triangleType) 
-{
+function drawTriangle(triangleType) {
     var canvas = document.getElementById('triangleCanvas');
     var context = canvas.getContext('2d');
-    var width = canvas.width; 
-    var height = canvas.height; 
+    var width = canvas.width;
+    var height = canvas.height;
 
     context.clearRect(0, 0, width, height);
     context.beginPath();
     context.lineWidth = 3;
 
     // Draw the triangle based on the canvas size and the type of triangle
-    if (triangleType === "Equilateral Triangle") 
-    {
+    if (triangleType === "Equilateral Triangle") {
         var topX = width / 2;
-        var topY = height * 0.15; 
-        var leftX = width * 0.1; 
-        var leftY = height * 0.85; 
-        var rightX = width * 0.9; 
-        var rightY = height * 0.85; 
+        var topY = height * 0.15;
+        var leftX = width * 0.1;
+        var leftY = height * 0.85;
+        var rightX = width * 0.9;
+        var rightY = height * 0.85;
 
         context.moveTo(topX, topY);
         context.lineTo(leftX, leftY);
         context.lineTo(rightX, rightY);
         context.lineTo(topX, topY);
-    } 
-    else if (triangleType === "Isosceles Triangle") 
-    {
-        var topX = width / 2; 
-        var topY = height * 0.1; 
-        var leftX = width * 0.3; 
-        var leftY = height * 0.9; 
-        var rightX = width * 0.7; 
-        var rightY = height * 0.9; 
+    }
+    else if (triangleType === "Isosceles Triangle") {
+        var topX = width / 2;
+        var topY = height * 0.1;
+        var leftX = width * 0.3;
+        var leftY = height * 0.9;
+        var rightX = width * 0.7;
+        var rightY = height * 0.9;
 
         context.moveTo(topX, topY);
         context.lineTo(leftX, leftY);
         context.lineTo(rightX, rightY);
         context.lineTo(topX, topY);
-    } 
-    else if (triangleType === "Right Triangle") 
-    {
-        var topX = width * 0.1; 
-        var topY = height * 0.1; 
-        var bottomX = width * 0.1; 
+    }
+    else if (triangleType === "Right Triangle") {
+        var topX = width * 0.1;
+        var topY = height * 0.1;
+        var bottomX = width * 0.1;
         var bottomY = height * 0.9;
-        var rightX = width * 0.9; 
-        var rightY = height * 0.9; 
+        var rightX = width * 0.9;
+        var rightY = height * 0.9;
 
         context.moveTo(topX, topY);
         context.lineTo(bottomX, bottomY);
         context.lineTo(rightX, rightY);
         context.lineTo(topX, topY);
-    } 
-    else if (triangleType === "Scalene Triangle") 
-    {
-        var topX = width * 0.2; 
-        var topY = height * 0.1; 
-        var middleX = width * 0.8; 
-        var middleY = height * 0.9; 
-        var bottomX = width * 0.4; 
-        var bottomY = height * 0.7; 
+    }
+    else if (triangleType === "Scalene Triangle") {
+        var topX = width * 0.2;
+        var topY = height * 0.1;
+        var middleX = width * 0.8;
+        var middleY = height * 0.9;
+        var bottomX = width * 0.4;
+        var bottomY = height * 0.7;
 
         context.moveTo(topX, topY);
         context.lineTo(middleX, middleY);
